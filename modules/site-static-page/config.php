@@ -30,7 +30,14 @@ return [
                 'lib-formatter' => NULL
             ]
         ],
-        'optional' => []
+        'optional' => [
+            [
+                'lib-event' => NULL
+            ],
+            [
+                'lib-cache-output' => NULL
+            ]
+        ]
     ],
     'autoload' => [
         'classes' => [

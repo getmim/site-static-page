@@ -28,6 +28,7 @@ class PageController extends \Site\Controller
         ];
 
         $this->res->render('static-page/single', $params);
+        $this->res->setCache(86400);
         $this->res->send();
     }
 }
