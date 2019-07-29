@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'site-static-page',
-    '__version' => '0.0.1',
+    '__version' => '0.0.2',
     '__git' => 'git@github.com:getmim/site-static-page.git',
     '__license' => 'MIT',
     '__author' => [
@@ -11,9 +11,9 @@ return [
         'website' => 'http://iqbalfn.com/'
     ],
     '__files' => [
-        'app/site-static-page'      => ['install','remove'],
-        'modules/site-static-page'  => ['install','update','remove'],
-        'theme/site/static-page'    => ['install','remove']
+        'app/site-static-page' => ['install','remove'],
+        'modules/site-static-page' => ['install','update','remove'],
+        'theme/site/static-page' => ['install','remove']
     ],
     '__dependencies' => [
         'required' => [
@@ -48,6 +48,10 @@ return [
             'SiteStaticPage\\Meta' => [
                 'type' => 'file',
                 'base' => 'modules/site-static-page/meta'
+            ],
+            'SiteStaticPage\\Library' => [
+                'type' => 'file',
+                'base' => 'modules/site-static-page/library'
             ]
         ],
         'files' => []
@@ -78,6 +82,16 @@ return [
                         ]
                     ]
                 ]
+            ]
+        ]
+    ],
+    'libEvent' => [
+        'events' => [
+            'static-page:deleted' => [
+                'SiteStaticPage\\Library\\Event::clear' => true
+            ],
+            'static-page:updated' => [
+                'SiteStaticPage\\Library\\Event::clear' => true
             ]
         ]
     ]
