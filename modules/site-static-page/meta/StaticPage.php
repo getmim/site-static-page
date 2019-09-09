@@ -7,7 +7,7 @@
 
 namespace SiteStaticPage\Meta;
 
-class StaticPage extends \Site\Controller
+class StaticPage
 {
     static function single(object $page){
         $result = [

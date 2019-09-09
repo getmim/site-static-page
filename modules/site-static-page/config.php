@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'site-static-page',
-    '__version' => '0.0.2',
+    '__version' => '0.0.3',
     '__git' => 'git@github.com:getmim/site-static-page.git',
     '__license' => 'MIT',
     '__author' => [
@@ -43,7 +43,7 @@ return [
         'classes' => [
             'SiteStaticPage\\Controller' => [
                 'type' => 'file',
-                'base' => 'app/site-static-page/controller'
+                'base' => ['app/site-static-page/controller','modules/site-static-page/controller']
             ],
             'SiteStaticPage\\Meta' => [
                 'type' => 'file',
@@ -67,6 +67,13 @@ return [
                 ],
                 'method' => 'GET',
                 'handler' => 'SiteStaticPage\\Controller\\Page::single'
+            ],
+            'siteStaticPageFeed' => [
+                'path' => [
+                    'value' => '/page/feed.xml'
+                ],
+                'method' => 'GET',
+                'handler' => 'SiteStaticPage\\Controller\\Robot::feed'
             ]
         ]
     ],
@@ -87,11 +94,24 @@ return [
     ],
     'libEvent' => [
         'events' => [
+            'static-page:created' => [
+                'SiteStaticPage\\Library\\Event::clear' => TRUE
+            ],
             'static-page:deleted' => [
-                'SiteStaticPage\\Library\\Event::clear' => true
+                'SiteStaticPage\\Library\\Event::clear' => TRUE
             ],
             'static-page:updated' => [
-                'SiteStaticPage\\Library\\Event::clear' => true
+                'SiteStaticPage\\Library\\Event::clear' => TRUE
+            ]
+        ]
+    ],
+    'site' => [
+        'robot' => [
+            'feed' => [
+                'SiteStaticPage\\Library\\Robot::feed' => TRUE
+            ],
+            'sitemap' => [
+                'SiteStaticPage\\Library\\Robot::sitemap' => TRUE
             ]
         ]
     ]
